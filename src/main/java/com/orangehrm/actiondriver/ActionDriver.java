@@ -5,8 +5,11 @@ import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.orangehrm.base.BaseClass;
 
 public class ActionDriver {
 
@@ -15,11 +18,12 @@ public class ActionDriver {
 
 	public ActionDriver(WebDriver driver) {
 		this.driver = driver;
+		int explicitWait = Integer.parseInt(BaseClass.getProp().getProperty("explicitWait"));
 		this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 	}
 
 	// Method to click on an element
-	public void click(By by, String value) {
+	public void click(By by) {
 		try {
 			waitForElementToBeClickable(by);
 			driver.findElement(by).click();
@@ -32,8 +36,11 @@ public class ActionDriver {
 	public void enterText(By by, String value) {
 		try {
 			waitForElementToBeVisible(by);
-			driver.findElement(by).clear();
-			driver.findElement(by).sendKeys(value);
+			//driver.findElement(by).clear();
+			//driver.findElement(by).sendKeys(value);
+			WebElement element = driver.findElement(by);
+			element.clear();
+			element.sendKeys(value);
 		} catch (Exception e) {
 			System.out.println("Unable to enter the value: " + e.getMessage());
 		}
@@ -51,32 +58,29 @@ public class ActionDriver {
 	}
 
 	// Method to compare Two text
-	public void compareText(By by, String expectedText) {
+	public boolean compareText(By by, String expectedText) {
 		waitForElementToBeVisible(by);
 		try {
 			String actualText = driver.findElement(by).getText();
 			if (expectedText.equals(actualText)) {
 				System.out.println("Text are matching: " + actualText + " and " + expectedText);
+				return true;
 			} else {
 				System.out.println("Text are not matching: " + actualText + " and " + expectedText);
+				return false;
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println("Unable to get text from element: " + e.getMessage());
 		}
+		return false;
 	}
 	
 	//Method to check if element is displayed
 	public boolean isDisplayed(By by) {
 		try {
 			waitForElementToBeVisible(by);
-			boolean isDisplayed = driver.findElement(by).isDisplayed();
-			if(isDisplayed) {
-				System.out.println("Element is displayed");
-				return isDisplayed;
-				} else {
-					return isDisplayed;
-				}
+			return driver.findElement(by).isDisplayed();
 		} catch (Exception e) {
 			System.out.println("Element not displayed: " + e.getMessage());
 			return false;

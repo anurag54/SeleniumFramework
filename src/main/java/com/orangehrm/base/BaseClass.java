@@ -85,8 +85,18 @@ public class BaseClass {
 		}
 	}
 	
+	//Getter method for Properties
+	public static Properties getProp() {
+		return prop;
+	}
+	
+	// Setter method for Properties
+	public void setProp(Properties prop) {
+		this.prop = prop;
+	}
+	
 	// Driver get method
-	public WebDriver getDriver() {
+	public static WebDriver getDriver() {
 		return driver;
 	}
 	
