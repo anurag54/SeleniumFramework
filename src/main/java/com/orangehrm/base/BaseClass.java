@@ -85,6 +85,16 @@ public class BaseClass {
 		}
 	}
 	
+	// Driver get method
+	public WebDriver getDriver() {
+		return driver;
+	}
+	
+	//Driver set method
+	public void setDriver(WebDriver driver) {
+		this.driver = driver;
+	}
+	
 	//Static wait for pause execution for a specified time
 	public void staticWait(int seconds) {
 		LockSupport.parkNanos(TimeUnit.SECONDS.toNanos(seconds));
