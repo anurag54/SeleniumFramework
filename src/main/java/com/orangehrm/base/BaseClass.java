@@ -7,6 +7,7 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.LockSupport;
 
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -16,12 +17,14 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
 import com.orangehrm.actiondriver.ActionDriver;
+import com.orangehrm.utilities.LoggerManager;
 
 public class BaseClass {
 
 	protected static Properties prop;
 	protected static WebDriver driver;
 	private static ActionDriver actionDriver;
+	public static final Logger logger = LoggerManager.getLogger(BaseClass.class);
 	
 	// This method can be used to load configuration if needed separately
 	
@@ -30,6 +33,7 @@ public class BaseClass {
 		prop = new Properties();
 		FileInputStream fis = new FileInputStream("src/main/resources/config.properties");
 		prop.load(fis);
+		logger.info("Configuration properties loaded successfully.");
 	}
 	
 	@BeforeMethod
@@ -37,12 +41,12 @@ public class BaseClass {
 		launchBrowser();
 		configureBrowser();
 		staticWait(2); // Static wait to allow the browser to stabilize
-		
+		 logger.info("Browser launched and configured successfully.");
 		
 	//Initialize ActionDriver instance only once
 		if(actionDriver == null) {
 			actionDriver = new ActionDriver(driver);
-			System.out.println("ActionDriver instance created in BaseClass");
+			logger.info("ActionDriver instance created in BaseClass");
 		}
 	}
 	
@@ -53,10 +57,13 @@ public class BaseClass {
 
 		if (browser.equalsIgnoreCase("chrome")) {
 			driver = new ChromeDriver();
+			logger.info("Chrome browser launched.");
 		} else if (browser.equalsIgnoreCase("firefox")) {
 			driver = new FirefoxDriver();
+			logger.info("Firefox browser launched.");
 		} else if (browser.equalsIgnoreCase("edge")) {
 			driver = new EdgeDriver();
+			logger.info("Edge browser launched.");
 		} else {
 			throw new IllegalArgumentException("Browser not supported: " + browser);
 		}
@@ -93,7 +100,7 @@ public class BaseClass {
 			} 
 							
 		}
-		System.out.println("Webdriver instance is closed.");
+		logger.info("Webdriver instance is closed.");
 		driver=null;
 		actionDriver=null;
 	}

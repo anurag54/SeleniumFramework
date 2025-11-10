@@ -1,0 +1,28 @@
+2025-11-11 00:55:23 INFO  BaseClass:36 - Configuration properties loaded successfully.
+2025-11-11 00:55:26 INFO  BaseClass:60 - Chrome browser launched.
+2025-11-11 00:55:31 INFO  BaseClass:44 - Browser launched and configured successfully.
+2025-11-11 00:55:31 INFO  BaseClass:25 - Webdriver instance is created in ActionDriver
+2025-11-11 00:55:31 INFO  BaseClass:49 - ActionDriver instance created in BaseClass
+2025-11-11 00:55:31 INFO  BaseClass:48 - Entered text: admin
+2025-11-11 00:55:31 INFO  BaseClass:48 - Entered text: admin123
+2025-11-11 00:55:31 INFO  BaseClass:33 - Clicked on element
+2025-11-11 00:55:33 INFO  BaseClass:33 - Clicked on element
+2025-11-11 00:55:34 INFO  BaseClass:33 - Clicked on element
+2025-11-11 00:55:36 INFO  BaseClass:103 - Webdriver instance is closed.
+2025-11-11 00:55:37 INFO  BaseClass:60 - Chrome browser launched.
+2025-11-11 00:55:41 INFO  BaseClass:44 - Browser launched and configured successfully.
+2025-11-11 00:55:41 INFO  BaseClass:25 - Webdriver instance is created in ActionDriver
+2025-11-11 00:55:41 INFO  BaseClass:49 - ActionDriver instance created in BaseClass
+2025-11-11 00:55:42 INFO  BaseClass:48 - Entered text: admin
+2025-11-11 00:55:42 INFO  BaseClass:48 - Entered text: admin
+2025-11-11 00:55:42 INFO  BaseClass:33 - Clicked on element
+2025-11-11 00:55:43 INFO  BaseClass:71 - Text are matching: Invalid credentials and Invalid credentials
+2025-11-11 00:55:43 INFO  BaseClass:103 - Webdriver instance is closed.
+2025-11-11 00:55:44 INFO  BaseClass:60 - Chrome browser launched.
+2025-11-11 00:55:50 INFO  BaseClass:44 - Browser launched and configured successfully.
+2025-11-11 00:55:50 INFO  BaseClass:25 - Webdriver instance is created in ActionDriver
+2025-11-11 00:55:50 INFO  BaseClass:49 - ActionDriver instance created in BaseClass
+2025-11-11 00:55:50 INFO  BaseClass:48 - Entered text: admin
+2025-11-11 00:55:50 INFO  BaseClass:48 - Entered text: admin123
+2025-11-11 00:55:50 INFO  BaseClass:33 - Clicked on element
+2025-11-11 00:55:52 INFO  BaseClass:103 - Webdriver instance is closed.

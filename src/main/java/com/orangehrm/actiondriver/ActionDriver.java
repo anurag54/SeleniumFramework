@@ -2,6 +2,7 @@ package com.orangehrm.actiondriver;
 
 import java.time.Duration;
 
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -15,12 +16,13 @@ public class ActionDriver {
 
 	private WebDriver driver;
 	private WebDriverWait wait;
+	public static final Logger logger = BaseClass.logger;
 
 	public ActionDriver(WebDriver driver) {
 		this.driver = driver;
 		int explicitWait = Integer.parseInt(BaseClass.getProp().getProperty("explicitWait"));
 		this.wait = new WebDriverWait(driver, Duration.ofSeconds(explicitWait));
-		System.out.println("Webdriver instance is created in ActionDriver");
+		logger.info("Webdriver instance is created in ActionDriver");
 	}
 
 	// Method to click on an element
@@ -28,8 +30,9 @@ public class ActionDriver {
 		try {
 			waitForElementToBeClickable(by);
 			driver.findElement(by).click();
+			logger.info("Clicked on element");
 		} catch (Exception e) {
-			System.out.println("Unable to click on element: " + e.getMessage());
+			logger.error("Unable to click on element: " + e.getMessage());
 		}
 	}
 
@@ -42,8 +45,9 @@ public class ActionDriver {
 			WebElement element = driver.findElement(by);
 			element.clear();
 			element.sendKeys(value);
+			logger.info("Entered text: " + value);
 		} catch (Exception e) {
-			System.out.println("Unable to enter the value: " + e.getMessage());
+			logger.error("Unable to enter the value: " + e.getMessage());
 		}
 	}
 
@@ -53,7 +57,7 @@ public class ActionDriver {
 			waitForElementToBeVisible(by);
 			return driver.findElement(by).getText();
 		} catch (Exception e) {
-			System.out.println("Unable to get text from element: " + e.getMessage());
+			logger.error("Unable to get text from element: " + e.getMessage());
 			return "";
 		}
 	}
@@ -64,15 +68,14 @@ public class ActionDriver {
 		try {
 			String actualText = driver.findElement(by).getText();
 			if (expectedText.equals(actualText)) {
-				System.out.println("Text are matching: " + actualText + " and " + expectedText);
+				logger.info("Text are matching: " + actualText + " and " + expectedText);
 				return true;
 			} else {
-				System.out.println("Text are not matching: " + actualText + " and " + expectedText);
+				logger.error("Text are not matching: " + actualText + " and " + expectedText);
 				return false;
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			System.out.println("Unable to get text from element: " + e.getMessage());
+			logger.error("Unable to get text from element: " + e.getMessage());
 		}
 		return false;
 	}
@@ -83,7 +86,7 @@ public class ActionDriver {
 			waitForElementToBeVisible(by);
 			return driver.findElement(by).isDisplayed();
 		} catch (Exception e) {
-			System.out.println("Element not displayed: " + e.getMessage());
+			logger.error("Element not displayed: " + e.getMessage());
 			return false;
 		}
 	}
@@ -93,9 +96,9 @@ public class ActionDriver {
 		try {
 			wait.withTimeout(Duration.ofSeconds(timeOutInSeconds)).until(
 				webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
-			System.out.println("Page loaded successfully");
+			logger.info("Page loaded successfully");
 		} catch (Exception e) {
-			System.out.println("Page did not load within " + timeOutInSeconds + " seconds: " + e.getMessage());
+			logger.error("Page did not load within " + timeOutInSeconds + " seconds: " + e.getMessage());
 		}
 	}
 
@@ -106,7 +109,7 @@ public class ActionDriver {
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			js.executeScript("arguments[0].scrollIntoView(true);", driver.findElement(by));
 		} catch (Exception e) {
-			System.out.println("Unable to scroll to element: " + e.getMessage());
+			logger.error("Unable to scroll to element: " + e.getMessage());
 		}
 	}
 	
@@ -115,7 +118,7 @@ public class ActionDriver {
 		try {
 			wait.until(ExpectedConditions.elementToBeClickable(by));
 		} catch (Exception e) {
-			System.out.println("Element not clickable: " + e.getMessage());
+			logger.error("Element not clickable: " + e.getMessage());
 		}
 	}
 
@@ -124,7 +127,7 @@ public class ActionDriver {
 		try {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(by));
 		} catch (Exception e) {
-			System.out.println("Element not visible: " + e.getMessage());
+			logger.error("Element not visible: " + e.getMessage());
 		}
 	}
 
