@@ -5,8 +5,8 @@
 <test name="OrangeHRMTest">
     <classes>
      <!--    <class name="com.orangehrm.test.DummyTest"/>
-         <class name="com.orangehrm.test.DummyTest2"/> 
-         <class name="com.orangehrm.test.LoginPageTest"/> -->
+         <class name="com.orangehrm.test.DummyTest2"/> -->
+         <class name="com.orangehrm.test.LoginPageTest"/> 
           <class name="com.orangehrm.test.HomePageTest"/>
     </classes>
 </test>

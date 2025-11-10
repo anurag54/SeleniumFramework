@@ -15,10 +15,13 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
+import com.orangehrm.actiondriver.ActionDriver;
+
 public class BaseClass {
 
 	protected static Properties prop;
 	protected static WebDriver driver;
+	private static ActionDriver actionDriver;
 	
 	// This method can be used to load configuration if needed separately
 	
@@ -34,6 +37,13 @@ public class BaseClass {
 		launchBrowser();
 		configureBrowser();
 		staticWait(2); // Static wait to allow the browser to stabilize
+		
+		
+	//Initialize ActionDriver instance only once
+		if(actionDriver == null) {
+			actionDriver = new ActionDriver(driver);
+			System.out.println("ActionDriver instance created in BaseClass");
+		}
 	}
 	
 	// Initialize the webDrive based on the browser defined in properties file
@@ -83,6 +93,9 @@ public class BaseClass {
 			} 
 							
 		}
+		System.out.println("Webdriver instance is closed.");
+		driver=null;
+		actionDriver=null;
 	}
 	
 	//Getter method for Properties
@@ -95,7 +108,25 @@ public class BaseClass {
 		this.prop = prop;
 	}
 	
-	// Driver get method
+	//Getter method for WebDriver
+	public static WebDriver getDriver() {
+	      if (driver == null) {
+	    	  System.out.println("WebDriver is not initialized");
+	          throw new IllegalStateException("WebDriver instance is not initialized");
+	      }
+		return driver;
+	}
+	
+	//Getter method for ActionDriver
+	public static ActionDriver getActionDriver() {
+	      if (actionDriver == null) {
+	    	  System.out.println("ActionDriver is not initialized");
+	          throw new IllegalStateException("ActionDriver instance is not initialized");
+	      }
+		return actionDriver;
+	}
+	
+	/*// Driver get method
 	public static WebDriver getDriver() {
 		return driver;
 	}
@@ -103,7 +134,7 @@ public class BaseClass {
 	//Driver set method
 	public void setDriver(WebDriver driver) {
 		this.driver = driver;
-	}
+	} **/
 	
 	//Static wait for pause execution for a specified time
 	public void staticWait(int seconds) {
