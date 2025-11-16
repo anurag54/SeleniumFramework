@@ -22,8 +22,12 @@ import com.orangehrm.utilities.LoggerManager;
 public class BaseClass {
 
 	protected static Properties prop;
-	protected static WebDriver driver;
-	private static ActionDriver actionDriver;
+	//protected static WebDriver driver;
+	//private static ActionDriver actionDriver;
+	
+	private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+	private static ThreadLocal<ActionDriver> actionDriver = new ThreadLocal<>();
+	
 	public static final Logger logger = LoggerManager.getLogger(BaseClass.class);
 	
 	// This method can be used to load configuration if needed separately
@@ -37,32 +41,39 @@ public class BaseClass {
 	}
 	
 	@BeforeMethod
-	public void setup() throws IOException {
+	public synchronized void setup() throws IOException {
 		launchBrowser();
 		configureBrowser();
 		staticWait(2); // Static wait to allow the browser to stabilize
 		 logger.info("Browser launched and configured successfully.");
 		
 	//Initialize ActionDriver instance only once
-		if(actionDriver == null) {
+	/**	if(actionDriver == null) {
 			actionDriver = new ActionDriver(driver);
 			logger.info("ActionDriver instance created in BaseClass");
-		}
+		} */
+		 
+		 // Initialize ActionDriver instance for the current thread
+		 actionDriver.set(new ActionDriver(driver.get()));
+		 logger.info("ActionDriver instance created for the current thread."+Thread.currentThread().getId());
 	}
 	
 	// Initialize the webDrive based on the browser defined in properties file
-	private void launchBrowser() {
+	private synchronized void launchBrowser() {
 		// This method can be used to launch browser if needed separately
 		String browser = prop.getProperty("browser");
 
 		if (browser.equalsIgnoreCase("chrome")) {
-			driver = new ChromeDriver();
+			//driver = new ChromeDriver();
+			driver.set(new ChromeDriver());   //New changes as per ThreadLocal
 			logger.info("Chrome browser launched.");
 		} else if (browser.equalsIgnoreCase("firefox")) {
-			driver = new FirefoxDriver();
+			//driver = new FirefoxDriver();
+			driver.set(new FirefoxDriver());
 			logger.info("Firefox browser launched.");
 		} else if (browser.equalsIgnoreCase("edge")) {
-			driver = new EdgeDriver();
+			//driver = new EdgeDriver();
+			driver.set(new EdgeDriver());
 			logger.info("Edge browser launched.");
 		} else {
 			throw new IllegalArgumentException("Browser not supported: " + browser);
@@ -73,36 +84,38 @@ public class BaseClass {
 	private void configureBrowser() {
 		// Implicit wait
 		int implicitWait = Integer.parseInt(prop.getProperty("implicitWait"));
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitWait));
+		getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitWait));
 
 		// Launch the URL
 		try {
-			driver.get(prop.getProperty("url"));
+			getDriver().get(prop.getProperty("url"));
 		} catch (Exception e) {
 			System.out.println("Unable to launch the URL: " + e.getMessage());
 		}
 		
 
 		// maximize the browser window
-		driver.manage().window().maximize();
+		getDriver().manage().window().maximize();
 	}
 	
 	// Quit will close all the browser windows opened by WebDriver,
 	// Close will close only the current window
 	
 	@AfterMethod
-	public void tearDown() {
+	public synchronized void tearDown() {
 		if (driver != null) {
 			try {
-				driver.quit();
+				getDriver().quit();
 			} catch (Exception e) {
 				System.out.println("Error while quitting the browser: " + e.getMessage()); 
 			} 
 							
 		}
 		logger.info("Webdriver instance is closed.");
-		driver=null;
-		actionDriver=null;
+		driver.remove();
+		actionDriver.remove();
+		//driver=null;
+		//actionDriver=null;
 	}
 	
 	//Getter method for Properties
@@ -117,20 +130,20 @@ public class BaseClass {
 	
 	//Getter method for WebDriver
 	public static WebDriver getDriver() {
-	      if (driver == null) {
+	      if (driver.get() == null) {
 	    	  System.out.println("WebDriver is not initialized");
 	          throw new IllegalStateException("WebDriver instance is not initialized");
 	      }
-		return driver;
+		return driver.get();
 	}
 	
 	//Getter method for ActionDriver
 	public static ActionDriver getActionDriver() {
-	      if (actionDriver == null) {
+	      if (actionDriver.get() == null) {
 	    	  System.out.println("ActionDriver is not initialized");
 	          throw new IllegalStateException("ActionDriver instance is not initialized");
 	      }
-		return actionDriver;
+		return actionDriver.get();
 	}
 	
 	/*// Driver get method

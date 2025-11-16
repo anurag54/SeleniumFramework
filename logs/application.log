@@ -1,28 +1,38 @@
-2025-11-11 00:55:23 INFO  BaseClass:36 - Configuration properties loaded successfully.
-2025-11-11 00:55:26 INFO  BaseClass:60 - Chrome browser launched.
-2025-11-11 00:55:31 INFO  BaseClass:44 - Browser launched and configured successfully.
-2025-11-11 00:55:31 INFO  BaseClass:25 - Webdriver instance is created in ActionDriver
-2025-11-11 00:55:31 INFO  BaseClass:49 - ActionDriver instance created in BaseClass
-2025-11-11 00:55:31 INFO  BaseClass:48 - Entered text: admin
-2025-11-11 00:55:31 INFO  BaseClass:48 - Entered text: admin123
-2025-11-11 00:55:31 INFO  BaseClass:33 - Clicked on element
-2025-11-11 00:55:33 INFO  BaseClass:33 - Clicked on element
-2025-11-11 00:55:34 INFO  BaseClass:33 - Clicked on element
-2025-11-11 00:55:36 INFO  BaseClass:103 - Webdriver instance is closed.
-2025-11-11 00:55:37 INFO  BaseClass:60 - Chrome browser launched.
-2025-11-11 00:55:41 INFO  BaseClass:44 - Browser launched and configured successfully.
-2025-11-11 00:55:41 INFO  BaseClass:25 - Webdriver instance is created in ActionDriver
-2025-11-11 00:55:41 INFO  BaseClass:49 - ActionDriver instance created in BaseClass
-2025-11-11 00:55:42 INFO  BaseClass:48 - Entered text: admin
-2025-11-11 00:55:42 INFO  BaseClass:48 - Entered text: admin
-2025-11-11 00:55:42 INFO  BaseClass:33 - Clicked on element
-2025-11-11 00:55:43 INFO  BaseClass:71 - Text are matching: Invalid credentials and Invalid credentials
-2025-11-11 00:55:43 INFO  BaseClass:103 - Webdriver instance is closed.
-2025-11-11 00:55:44 INFO  BaseClass:60 - Chrome browser launched.
-2025-11-11 00:55:50 INFO  BaseClass:44 - Browser launched and configured successfully.
-2025-11-11 00:55:50 INFO  BaseClass:25 - Webdriver instance is created in ActionDriver
-2025-11-11 00:55:50 INFO  BaseClass:49 - ActionDriver instance created in BaseClass
-2025-11-11 00:55:50 INFO  BaseClass:48 - Entered text: admin
-2025-11-11 00:55:50 INFO  BaseClass:48 - Entered text: admin123
-2025-11-11 00:55:50 INFO  BaseClass:33 - Clicked on element
-2025-11-11 00:55:52 INFO  BaseClass:103 - Webdriver instance is closed.
+2025-11-16 18:38:51 INFO  BaseClass:40 - Configuration properties loaded successfully.
+2025-11-16 18:38:53 INFO  BaseClass:69 - Chrome browser launched.
+2025-11-16 18:38:53 INFO  BaseClass:69 - Chrome browser launched.
+2025-11-16 18:38:53 INFO  BaseClass:69 - Chrome browser launched.
+2025-11-16 18:38:53 INFO  BaseClass:69 - Chrome browser launched.
+2025-11-16 18:38:59 INFO  BaseClass:48 - Browser launched and configured successfully.
+2025-11-16 18:38:59 INFO  BaseClass:25 - Webdriver instance is created in ActionDriver
+2025-11-16 18:38:59 INFO  BaseClass:58 - ActionDriver instance created for the current thread.25
+2025-11-16 18:38:59 INFO  BaseClass:48 - Entered text: admin
+2025-11-16 18:38:59 INFO  BaseClass:48 - Entered text: admin123
+2025-11-16 18:38:59 INFO  BaseClass:48 - Browser launched and configured successfully.
+2025-11-16 18:38:59 INFO  BaseClass:25 - Webdriver instance is created in ActionDriver
+2025-11-16 18:38:59 INFO  BaseClass:58 - ActionDriver instance created for the current thread.23
+2025-11-16 18:38:59 INFO  BaseClass:48 - Browser launched and configured successfully.
+2025-11-16 18:38:59 INFO  BaseClass:25 - Webdriver instance is created in ActionDriver
+2025-11-16 18:38:59 INFO  BaseClass:58 - ActionDriver instance created for the current thread.24
+2025-11-16 18:38:59 INFO  BaseClass:33 - Clicked on element
+2025-11-16 18:38:59 INFO  BaseClass:48 - Entered text: admin
+2025-11-16 18:39:00 INFO  BaseClass:48 - Entered text: admin123
+2025-11-16 18:39:00 INFO  BaseClass:33 - Clicked on element
+2025-11-16 18:39:00 INFO  BaseClass:114 - Webdriver instance is closed.
+2025-11-16 18:39:00 INFO  BaseClass:48 - Browser launched and configured successfully.
+2025-11-16 18:39:00 INFO  BaseClass:25 - Webdriver instance is created in ActionDriver
+2025-11-16 18:39:00 INFO  BaseClass:58 - ActionDriver instance created for the current thread.22
+2025-11-16 18:39:01 INFO  BaseClass:114 - Webdriver instance is closed.
+2025-11-16 18:39:01 INFO  BaseClass:33 - Clicked on element
+2025-11-16 18:39:02 INFO  BaseClass:114 - Webdriver instance is closed.
+2025-11-16 18:39:03 INFO  BaseClass:33 - Clicked on element
+2025-11-16 18:39:05 INFO  BaseClass:114 - Webdriver instance is closed.
+2025-11-16 18:39:06 INFO  BaseClass:69 - Chrome browser launched.
+2025-11-16 18:39:11 INFO  BaseClass:48 - Browser launched and configured successfully.
+2025-11-16 18:39:11 INFO  BaseClass:25 - Webdriver instance is created in ActionDriver
+2025-11-16 18:39:11 INFO  BaseClass:58 - ActionDriver instance created for the current thread.25
+2025-11-16 18:39:11 INFO  BaseClass:48 - Entered text: admin
+2025-11-16 18:39:11 INFO  BaseClass:48 - Entered text: admin
+2025-11-16 18:39:11 INFO  BaseClass:33 - Clicked on element
+2025-11-16 18:39:12 INFO  BaseClass:71 - Text are matching: Invalid credentials and Invalid credentials
+2025-11-16 18:39:13 INFO  BaseClass:114 - Webdriver instance is closed.
